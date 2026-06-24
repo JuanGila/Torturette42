@@ -1,0 +1,114 @@
+//// POINTER TESTS
+
+1.- Puntero A Variable int
+    Descripcion: Se comprueba que se muestra un puntero a varable de tipo int.
+    OK: Se muestra correctamente un puntero a varable de tipo int.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+    /*
+    void *ptr = 0x1234abcd;
+          ↓
+    imprime: "0x1234abcd"
+    */
+    int x = 42;
+    printf("%p\n", &x);
+    y comparar el resultado con -> printf("%lx\n", (unsigned long)&x);(Eso te dará una pista bastante clara de cómo suele implementarse %p internamente.)
+
+2.- Puntero A Variable Char
+    Descripcion: Se comprueba que se muestra un puntero a varable de tipo char.
+    OK: Se muestra correctamente un puntero a varable de tipo char.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+3.- Puntero A Variable Char*
+    Descripcion: Se comprueba que se muestra un puntero a varable de tipo char *(string).
+    OK: Se muestra correctamente un puntero a varable de tipo char *(string)
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+4.- Direccion Array
+    Descripcion: Se comprueba que se muestra la direccion de un array.
+    OK: Se muestra correctamente la direccion de un array.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+5.- Direccion Elemento Array
+    Descripcion: Se comprueba que se muestra la dirección de un elemento del array.
+    OK: Se muestra correctamente la dirección de un elemento del array.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+6.- Puntero A Malloc
+    Descripcion: Se comprueba que se muestra un puntero obtenido con malloc.
+    OK: Se muestra correctamente un puntero obtenido con malloc o la cantidad devuelta de caracteres impresos es incorrecta.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+7.- Puntero A Nulo
+    Descripcion: Se comprueba que se muestra un puntero nulo.
+    OK: Se muestra correctamente un puntero nulo.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+    Por cierto, en el proyecto de 42 suele ser buena idea comprobar cómo se comporta el printf real con -> printf("%p\n", NULL);
+        porque el tratamiento de punteros nulos es uno de los detalles donde más dudas aparecen al implementar %p.
+
+8.- Dos Punteros Distintos
+    Descripcion: Se comprueba que se muestran dos punteros en la misma llamada.
+    OK: Se muestran correctamente dos punteros en la misma llamada.
+    KO: No se muestran correctamente dos punteros en la misma llamada o la cantidad devuelta de caracteres impresos es incorrecta.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+9.- Mismo Puntero Repetido
+    Descripcion: Se comprueba que se muestra el mismo puntero repetido.
+    OK: Se muestra correctamente el mismo puntero repetido.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+10.- Puntero A A Puntero
+    Descripcion: Se comprueba que se muestra un puntero que apunta a otro puntero.
+    OK: Se muestra correctamente un puntero que apunta a otro puntero.
+    KO: No coincide la salida con printf o el valor de retorno es incorrecto.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+11.- Puntero A Con Limites Positivos
+    Descripcion: Se comprueba que se muestran valores maximos como LONG_MAX.
+    OK: Se muestran correctamente valores maximos como LONG_MAX.
+    KO: No se muestran correctamente valores maximos como LONG_MAX o la cantidad devuelta de caracteres impresos es incorrecta.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+12.- Puntero A Con Limites Negativos
+    Descripcion: Se comprueba que se muestran valores minimos como LONG_MIN.
+    OK: Se muestran correctamente valores minimos como LONG_MIN.
+    KO: No se muestran correctamente valores minimos como LONG_MIN.
+    CRASH:
+        Sigsev en caso de ¿?
+        Sirargv en caso de ¿?
+
+
+13.- Se verifica que no se añaden ceros de más. Sirve para ¿?. Falla cuando se añaden ceros de mas.
+    ft_printf("%p\n", (void *)1);//(void *)1 verifica que no añades ceros de más.
+
+14.- Se comprueba que se muestra¿?. Suele servir para descubrir errores en la conversión hexadecimal. Falla cuando hay errores en la conversion hexadecimal.
+    ft_printf("%p\n", (void *)-1);//(void *)-1 genera una dirección llena de f (0xffffffffffffffff en 64 bits)

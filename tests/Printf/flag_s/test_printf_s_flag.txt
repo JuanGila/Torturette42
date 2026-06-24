@@ -1,0 +1,86 @@
+//// STRING TESTS(del 6 al 10)
+1.- Variable String
+    Descripcion: Se comprueba que se muestran correctamente cadenas de caracteres con %s, incluyendo casos límite como cadenas vacías, caracteres especiales y punteros NULL.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> al acceder a memoria inválida o desreferenciar incorrectamente un puntero
+        Undefined Behaviour -> comportamiento indefinido al leer memoria fuera de una cadena válida
+    TEST("%s", "Hola");
+    TEST("%s", "a");
+    TEST("%s", "");
+    TEST("%s", " ");
+    TEST("%s", "\n");
+    TEST("%s", "\t");
+    TEST("%s", "~");
+    TEST("%s", "0123456789");
+    TEST("%s", "abcdefghijklmnopqrstuvwxyz");
+    TEST("%s", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    TEST("%s", "!@#$%^&*()_+-=[]{}|;:',.<>/?");
+    TEST("%s", "Linea1\nLinea2");
+    TEST("%s", "\t\tTabbed\t\t");
+    TEST("%s", "     ");
+    TEST("%s", NULL); -> en Linux printf de glibc imprime "(null)", pero algunas implementaciones pueden comportarse de forma diferente.
+        Tu ft_printf debe replicar exactamente el comportamiento de la printf contra la que estés comparando los tests.
+2.- String Muy Larga
+    Descripcion: Se comprueba el manejo de cadenas de gran longitud y el cálculo correcto del valor de retorno.
+    OK: Se imprime la cadena completa y el número de caracteres devuelto coincide con printf.
+    KO: La cadena aparece truncada, contiene caracteres erróneos o el retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria durante el recorrido de la cadena
+        Undefined Behaviour -> lectura fuera de los límites de la cadena
+    TEST("%s", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+    TEST("%s", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+3.- String con Multiples Conversiones
+    Descripcion: Se comprueba que %s funciona correctamente junto a otras conversiones y que el contador de caracteres se mantiene correctamente.
+    OK: La salida y el valor de retorno coinciden con printf.
+    KO: El orden de impresión es incorrecto o el retorno difiere de printf.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria al procesar alguno de los argumentos
+        Undefined Behaviour -> desincronización en el uso de va_arg
+    TEST("%s %s", "Hola", "Mundo");
+    TEST("[%s]", "42");
+    TEST("%s%s", "Hello", "World");
+    TEST("-%s-", "");
+    TEST("%s %c %s", "Hola", '-', "Mundo"); -> ESTO ES COMBINACION DE DISTINTOS FLAGS, MOVER A UN APARTADO DE TESTS FINALES DONDE SE COMBINEN DISTINTOS FLAGS
+5.- String con Punteros Especiales
+    Descripcion: Se comprueba el comportamiento ante punteros especiales y direcciones de memoria límite.
+    OK: El comportamiento coincide exactamente con printf de la plataforma utilizada.
+    KO: La salida o el valor de retorno difieren respecto a printf.
+    CRASH:
+        SIGSEGV -> desreferenciación de un puntero inválido
+        Undefined Behaviour -> uso de punteros que no apuntan a una cadena terminada en '\0'
+    TEST("%s", NULL);
+    TEST("%s", (char *)0);
+    TEST("%s", (char *)"42 Madrid");
+
+
+
+
+void test_s_flag(void) {
+    //// STRING TESTS(del 6 al 10)
+    // Se comprueba que se muestra un string normal
+    ft_printf_res = ft_printf("Hello %s\n", "world");
+    printf_res = printf("Hello %s\n", "world");
+    ft_check_printf_res("Test6(normal-string)", printf_res, ft_printf_res);//test -> OK
+
+    // Se comprueba que se muestra un string vacio
+    ft_printf_res = ft_printf("Hello%s\n", "");
+    printf_res = printf("Hello%s\n", "");
+    ft_check_printf_res("Test7(empty-string)", printf_res, ft_printf_res);
+
+    // Se comprueba que se muestra un string ausente(nulo)
+    ft_printf_res = ft_printf("Hello %s\n", NULL);
+    printf_res = printf("Hello %s\n", (char *)NULL);// esto es -> NULL directamente sin casteo
+    ft_check_printf_res("Test8(null-string)", printf_res, ft_printf_res);
+
+    // Se comprueba que se muestran varios strings consecutivos(frase).
+    ft_printf_res = ft_printf("Hello %s %s %s %s\n", "world", "to all", "of you.", "");
+    printf_res = printf("Hello %s %s %s %s\n", "world", "to all", "of you.", "");
+    ft_check_printf_res("Test9(concatenated/consecutive-strings)", printf_res, ft_printf_res);
+
+    // Se comprueba que se muestran varios strings consecutivos ausentes.
+    ft_printf_res = ft_printf("Hello %s%s %s%s %s%s\n", "world", NULL, "to all", NULL, NULL, "of you.");
+    printf_res = printf("Hello %s%s %s%s %s%s\n", "world", (char *)NULL, "to all", (char *)NULL, (char *)NULL, "of you.");
+    ft_check_printf_res("Test10(concatenated/consecutive-strings)", printf_res, ft_printf_res);
+}

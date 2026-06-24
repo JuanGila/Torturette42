@@ -1,0 +1,9 @@
+// Test7 -> %x
+ft_printf_res = ft_printf("Hello %x\n", 42);
+printf_res = printf("Hello %x\n", 42);//Hello 2A
+ft_check_printf_res("Test7(unsigned-int-hex)", printf_res, ft_printf_res);
+
+// Test8 -> %X
+ft_printf_res = ft_printf("Hello %X\n", 42);
+printf_res = printf("Hello %X\n", 42);//HELLO 2A(comprobar con compañeros ya que 2A ya esta en upper_hex)
+ft_check_printf_res("Test8(unsigned-int-hex)", printf_res, ft_printf_res);

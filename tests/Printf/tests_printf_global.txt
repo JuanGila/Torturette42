@@ -1,0 +1,125 @@
+INFORMATION 
+%c	Carácter                        char(int por promocion de tipos)
+%s	Cadena de caracteres (string)	char *
+%p	Dirección de memoria (puntero)	void *
+%d	Entero decimal con signo        int
+%i	Entero con signo                int
+%u	Entero decimal sin signo        unsigned int
+%x	Entero hexadecimal (minúsculas)	unsigned int
+%X	Entero hexadecimal (mayúsculas)	unsigned int
+OTROS MUY USADOS(POSIBLE BONUS)
+%f      Flotante    float / double
+%e      Notación científica
+%g      Formato compacto para flotantes
+%ld     long long int
+%lld	long long int
+%zu     size_t
+%%      Imprime el carácter %(ya que este tiene que ser escapado al igual que la back-slash)
+
+char letra = 'A';
+char nombre[] = "Juan";
+int numero = -42;
+unsigned int edad = 25;
+int x = 10;
+
+printf("%c\n", letra);      // A
+printf("%s\n", nombre);     // Juan
+printf("%p\n", (void *)&x); // dirección de memoria
+printf("%d\n", numero);     // -42
+printf("%i\n", numero);     // -42
+printf("%u\n", edad);       // 25
+printf("%x\n", 255);        // ff
+printf("%X\n", 255);        // FF
+
+printf("%x\n", 48879); // beef
+printf("%X\n", 48879); // BEEF
+printf("%#x\n", 48879); // 0xbeef
+printf("%#X\n", 48879); // 0XBEEF
+
+int a = 5;
+printf("%p\n", (void *)&a);
+salida tipica -> 0x7ffeefbff5ac
+
+
+va_list
+    Antes de usar las macros, se necesita una variable de tipo -> va_list args;
+    Esta variable actúa como un "cursor" que recorrerá los argumentos variables.
+va_start
+    Inicializa el recorrido de los argumentos variables -> va_start(args, ultimo_parametro_fijo);
+    Ejemplo:
+        void ejemplo(char *fmt, ...)
+        {
+            va_list args;
+            va_start(args, fmt);
+        }
+        Aquí fmt es el último parámetro fijo antes de '...'
+va_arg
+    Obtiene el siguiente argumento de la lista -> tipo(int) valor(a) = va_arg(args, tipo);
+    Ejemplo:
+        int n = va_arg(args, int);
+        Cada llamada avanza automáticamente al siguiente argumento.
+        printf("%d %d %d\n", 10, 20, 30);
+    Si recorres:
+        va_arg(args, int); // 10
+        va_arg(args, int); // 20
+        va_arg(args, int); // 30
+va_end
+    Finaliza el uso de la lista -> va_end(args);
+    Debe llamarse siempre cuando termines.
+        va_start(args, fmt);
+        // usar args
+        va_end(args);
+va_copy
+    Copia una lista de argumentos. Es útil cuando necesitas recorrer los argumentos dos veces ->
+        va_list copia;
+        va_copy(copia, args);
+    Ejemplo:
+        va_list args;
+        va_list backup;
+        va_start(args, fmt);
+        va_copy(backup, args);
+        // usar args(los que sean)
+        // backup sigue apuntando al mismo lugar inicial
+        va_end(backup);
+        va_end(args);
+    Sin va_copy, copiar simplemente con -> backup = args; // NO portable -> puede dar problemas dependiendo de la implementación.
+
+int sum(int n, ...) {
+    va_list args;
+    int total = 0;
+    va_start(args, n);
+    for (int i = 0; i < n; i++)
+        total += va_arg(args, int);
+    va_end(args);
+    return total;
+}
+Uso: sum(3, 10, 20, 30); -> resultado: 60
+
+
+Qué pasa con las promociones de tipos
+Otro concepto importante de funciones variádicas: los argumentos adicionales sufren promociones por defecto antes de llegar a la función.
+    char y short se promueven a int.
+    float se promueve a double.
+Por eso, si alguien hace: printf("%c", 'A');
+internamente debes leer ese argumento como int y no como char. Lo mismo para float → leer como double.
+
+
+Por qué printf necesita la cadena de formato
+    La firma no contiene los tipos de los argumentos variables. Entonces, ¿cómo sabe printf qué leer? No lo sabe por la firma; lo sabe por la cadena de formato.
+
+Ejemplo conceptual: El parser de fmt decide el orden y los tipos ->
+Especificador   Tipo esperado por va_arg
+    %d          int
+    %s          char * (o const char * según tu diseño)
+    %f          double (por la promoción de float)
+
+Si el formato dice %d pero el llamador pasó un double, el comportamiento es indefinido. La función y el llamador deben estar de acuerdo.
+
+
+Puedes pensar en va_list como un cursor opaco sobre una secuencia de argumentos ya colocados por la ABI/plataforma.
+va_start posiciona el cursor justo después del último parámetro fijo;
+va_arg lee “el siguiente elemento” del tipo que tú le indiques y avanza;
+va_copy duplica la posición del cursor;
+va_end libera/normaliza cualquier estado interno asociado.
+El compilador no verifica que el tipo que pides con va_arg coincida con lo que realmente se pasó:
+    esa coherencia la impone el contrato de la cadena de formato.

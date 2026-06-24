@@ -1,0 +1,120 @@
+//// UNSIGNED INT TESTS
+0. UNSIGNED INT TESTS GLOBAL INFO
+    Para %u en ft_printf interesa comprobar:
+        Valores límite (0, UINT_MAX)
+        Valores pequeños y grandes
+        Valores obtenidos mediante conversiones implícitas de enteros negativos
+        Valores aleatorios
+        Combinaciones con texto antes y después del especificador
+        Varios %u en la misma llamada
+        Valor de retorno (return) correcto
+1.- Variable Unsigned Int (%u)
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo en base decimal.
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    TEST("%u", 0u);
+    TEST("%u", 1u);
+    TEST("%u", 9u);
+    TEST("%u", 10u);
+    TEST("%u", 42u);
+    TEST("%u", 123u);
+    TEST("%u", 999u);
+    TEST("%u", 1000u);
+    TEST("%u", 424242u);
+
+2.- Variable Unsigned Int Potencias 10
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo en base decimal con potencias
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    TEST("%u", 10u);
+    TEST("%u", 100u);
+    TEST("%u", 1000u);
+    TEST("%u", 10000u);
+    TEST("%u", 100000u);
+    TEST("%u", 1000000u);
+    TEST("%u", 10000000u);
+    TEST("%u", 100000000u);
+    TEST("%u", 1000000000u);
+
+3.- Variable Unsigned Int Valores Limite
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo en base decimal con potencias
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    TEST("%u", UINT_MAX);
+    TEST("%u", UINT_MAX - 1);
+    TEST("%u", UINT_MAX / 2);
+    TEST("%u", UINT_MAX / 10);
+    TEST("%u", (unsigned int)INT_MIN);
+    TEST("%u", (unsigned int)INT_MAX);
+
+4.- Variable Unsigned Int Conversion Implicita Negativos
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo con conversion implicita de negativos
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    (Aunque %u espera un unsigned int, en C es habitual comprobar la representación resultante al convertir negativos)
+    TEST("%u", (unsigned int)-1); DEBE IMPRIMIR 4294967295 en arquitecturas de 32 bits para unsigned int.
+    TEST("%u", (unsigned int)-2);
+    TEST("%u", (unsigned int)-42);
+    TEST("%u", (unsigned int)INT_MIN);
+    TEST("%u", (unsigned int)INT_MAX);
+
+5.- Variable Unsigned Int Con Texto
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo con conversion implicita de negativos
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    TEST("(%u)", 0u);
+    TEST("[%u]", UINT_MAX);
+    TEST("Value: %u", 42u);
+    TEST("%u <- value", 42u);
+    TEST("Number [%u]", 123456u);
+    TEST("Result = %u!", UINT_MAX);
+
+6. Variable Unsigned Int Multiples
+    Descripcion: Se comprueba que el especificador %u muestra correctamente números enteros sin signo con conversion implicita de negativos
+        También se verifica que el valor de retorno coincide con el de printf, incluyendo casos límite, conversiones implícitas y múltiples especificadores.
+    OK: La salida coincide con printf y el valor de retorno es correcto.
+    KO: La salida no coincide con printf o el valor de retorno es incorrecto.
+    CRASH:
+        SIGSEGV -> acceso inválido a memoria provocado por un manejo incorrecto de la lista de argumentos.
+        Undefined Behaviour -> comportamiento indefinido al manejar va_arg incorrectamente.
+            lectura incorrecta de va_arg (por ejemplo, usar int en lugar de unsigned int).
+    TEST("%u %u", 0u, UINT_MAX);
+    TEST("%u %u %u", 1u, 2u, 3u);
+    TEST("[%u][%u][%u]", 10u, 100u, 1000u);
+    TEST("%u-%u-%u-%u", 42u, 84u, 126u, 168u);
+
+Este conjunto suele detectar casi todos los errores típicos de %u en ft_printf:
+    - usar ft_putnbr en lugar de una versión unsigned, imprimir signos negativos
+    - desbordamientos al tratar UINT_MAX, errores de recursión y fallos en el cálculo del valor de retorno.
+
+// MULTIPLES FLAGS -> MOVER DE AQUI AL COMBINADO DE DISTINTOS FLAGS
+    TEST("%u %c %u", 123u, ':', 456u);
+    TEST("%u %d", 42u, -42);
+    TEST("%c %u %s", 'A', 123u, "Hello");
+    TEST("%p %u", &main, 999u);
+    TEST("%x %u %X", 255u, 255u, 255u);
