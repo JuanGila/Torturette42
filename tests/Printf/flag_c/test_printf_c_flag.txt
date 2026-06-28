@@ -1,12 +1,4 @@
 //// CHAR TESTS
-La visualizacion de datos funciona asi(Se detecta automaticamente en que proyecto te encuentras):
-    - Mostrar la informacion de todos los flag-tests de printf -> torturette printf
-    - Mostrar la informacion de todos los tests incluyendo el punto 0 -> torturette printf c_flag
-    - Mostrar la informacion de un test en concreto de un conjunto de tests -> torturette printf c_flag test1
-Las ejecuciones de tests funcionan asi(se detecta automaticamente en que carpeta de proyecto te encuentras):
-    - Ejecutar los tests de printf(full suite) -> torturette
-    - Ejecutar un conjunto de test en concreto(todos los tests de c_flag) -> torturette c_flag
-    - Ejecutar un test en concreto de un conjunto de tests -> torturette c_flag test1
 0.- CHAR TESTS GLOBAL INFO
     Este banco de pruebas encuentra prácticamente todos los bugs típicos de %c en ft_printf:
         olvidar contar '\0'

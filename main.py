@@ -1,34 +1,33 @@
 import os, re, sys, subprocess, shutil, textwrap, logging
-from argparse import ArgumentParser
+from argparse import ArgumentParser, RawTextHelpFormatter
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
+from typing import Callable
 
-from git import Repo
 from testers.cpiscine.CPiscine import CPiscine
-from testers.get_next_line.GetNextLine import GetNextLine
 from testers.libft.Libft import Libft
+from testers.printf.Printf import Printf
+from testers.get_next_line.GetNextLine import GetNextLine
+from testers.push_swap.PushSwap import PushSwap
+from git import Repo
 from testers.minitalk.Minitalk import Minitalk
 from testers.pipex.Pipex import Pipex
-from testers.printf.Printf import Printf
 from utils.ExecutionContext import TestRunInfo, set_contex
 from utils.TerminalColors import TC
 from utils.update import do_update, update_paco
 
 logger = logging.getLogger("main")
 
-MLST_0_PROJECTS_LIST = [Libft];
-MLST_1_PROJECTS_LIST = [Printf, GetNextLine, PushSwap];
-MLST_2_PROJECTS_LIST = [];
-MLST_3_PROJECTS_LIST = [];
-MLST_4_PROJECTS_LIST = [];
-MLST_5_PROJECTS_LIST = [];
-MLST_6_PROJECTS_LIST = [];
+
 COMMON_CORE_PROJECTS = [
-	MLST_0_PROJECTS_LIST, MLST_1_PROJECTS_LIST,
-	MLST_2_PROJECTS_LIST, MLST_3_PROJECTS_LIST,
-	MLST_4_PROJECTS_LIST, MLST_5_PROJECTS_LIST,
-	MLST_6_PROJECTS_LIST
-]
+	CPiscine,
+	Libft,
+	GetNextLine,
+	Printf,
+	PushSwap,
+	Minitalk,
+	Pipex
+]#old
 
 
 def is_repo(string: str):

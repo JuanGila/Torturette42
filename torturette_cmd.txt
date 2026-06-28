@@ -1,0 +1,34 @@
+epilog="""
+		EJEMPLOS
+
+		LIBFT
+		torturette libft info -> Ejecuta todos los tests de todas las suites.
+
+		torturette libft info is_test -> Ejecuta todos los tests de la suite 'is_test'.
+
+		torturette libft info is_test str_test mem_test -> Ejecuta todas las suites indicadas.
+
+		torturette libft info ft_isdigit -> Ejecuta todos los tests del ejercicio ft_isdigit.
+
+		torturette libft info ft_isdigit ft_isalpha -> Ejecuta todos los tests de los ejercicios ft_isdigit y ft_isalpha.
+
+		torturette libft info ft_isdigit test1 test2 -> Ejecuta únicamente los tests test1 y test2 de ft_isdigit.
+		
+		PRINTF
+		torturette printf info -> Ejecuta todos los tests del proyecto printf.
+
+		torturette printf info c_flag -> Ejecuta todos los tests del ejercicio c_flag.
+
+		torturette printf info c_flag s_flag -> Ejecuta todos los tests de los ejercicios c_flag y s_flag.
+
+		torturette printf info c_flag test1 test2 -> Ejecuta únicamente los tests test1 y test2 del ejercicio c_flag.
+		
+		GNL
+		torturette gnl info -> Ejecuta todos los tests del proyecto gnl.
+
+		torturette gnl info c_flag -> Ejecuta todos los tests del ejercicio c_flag.
+
+		torturette gnl info c_flag s_flag -> Ejecuta todos los tests de los ejercicios c_flag y s_flag.
+
+		torturette gnl info c_flag test1 test2 -> Ejecuta únicamente los tests test1 y test2 del ejercicio c_flag.
+	"""

@@ -22,6 +22,7 @@
     TEST("%s", "     ");
     TEST("%s", NULL); -> en Linux printf de glibc imprime "(null)", pero algunas implementaciones pueden comportarse de forma diferente.
         Tu ft_printf debe replicar exactamente el comportamiento de la printf contra la que estés comparando los tests.
+
 2.- String Muy Larga
     Descripcion: Se comprueba el manejo de cadenas de gran longitud y el cálculo correcto del valor de retorno.
     OK: Se imprime la cadena completa y el número de caracteres devuelto coincide con printf.
@@ -43,7 +44,8 @@
     TEST("%s%s", "Hello", "World");
     TEST("-%s-", "");
     TEST("%s %c %s", "Hola", '-', "Mundo"); -> ESTO ES COMBINACION DE DISTINTOS FLAGS, MOVER A UN APARTADO DE TESTS FINALES DONDE SE COMBINEN DISTINTOS FLAGS
-5.- String con Punteros Especiales
+
+4.- String con Punteros Especiales
     Descripcion: Se comprueba el comportamiento ante punteros especiales y direcciones de memoria límite.
     OK: El comportamiento coincide exactamente con printf de la plataforma utilizada.
     KO: La salida o el valor de retorno difieren respecto a printf.
@@ -57,7 +59,7 @@
 
 
 
-void test_s_flag(void) {
+void ft_printf_s_flag_tests(void) {
     //// STRING TESTS(del 6 al 10)
     // Se comprueba que se muestra un string normal
     ft_printf_res = ft_printf("Hello %s\n", "world");
