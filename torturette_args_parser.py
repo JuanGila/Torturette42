@@ -106,24 +106,37 @@ def _show_torturette_command_help(project_name: str, project_targets: list[str] 
 ### PROJECTS-INFO
 ## Comando -> torturette libft info o torturette libft test
 # Funcion que obtiene la informacion de un proyecto.
-	# Posibles targets -> torturette libft info str mem o torturette libft info ft_strlen ft_isdigit o torturette libft info ft_strlen test1 test2
+# Posibles targets -> torturette libft info str mem o torturette libft info ft_strlen ft_isdigit o torturette libft info ft_strlen test1 test2
 def _get_torturette_project_info(project_name: str, project_targets: list[str]) -> bool:
 	# Si no hay targets quiere decir que hay que mostrar toda la info del proyecto recibido en project_name al completo(libft, printf, gnl ...).
 	if not argument_parser_args.targets: return _get_common_core_mlst_project_callback(project_name);# __show_libft_tests_info()
 	# En base al proyecto recibido, comprobamos que project_targets sean todos suites.
-	if all(_is_argument_parser_target_a_suite(project_name, project_target) for project_target in project_targets):pass
-		# Ejecutamos la funcion que visualiza la informacion de todos los test de las suites recibidas en base al proyecto.
+	are_project_targets_all_suites = all(
+		_is_argument_parser_target_a_suite(project_name, project_target) for project_target in project_targets
+	);
+	are_project_targets_any_suites = any(
+		_is_argument_parser_target_a_suite(project_name, project_target) for project_target in project_targets
+	);
+	if are_project_targets_all_suites:pass#TODO -> ¿?
+	elif are_project_targets_any_suites: print("Comando mal formado. Si hay al menos 1 suite, todos deben ser suites.");
 	# En base al proyecto recibido, comprobamos que project_targets sean todos ejercicios.
-	if all(_is_argument_parser_target_exercise(project_name, project_target) for project_target in project_targets):pass
+	are_project_targets_all_exercises = all(
+		_is_argument_parser_target_an_exercise(project_name, project_target) for project_target in project_targets
+	);
+	if are_project_targets_all_exercises:pass#TODO -> ¿?
+	elif any(_is_argument_parser_target_an_exercise(project_name, project_target) for project_target in project_targets):pass
+		#TODO -> Comprobamos que el comando sea -> torturette libft info ft_strlen test1 test2.
 ## FULL SUITES
 # Funcion que verifica si el target recibido es una suite(str) del proyecto recibido(libft).
 def _is_argument_parser_target_a_suite(project_name: str, project_target: str) -> bool:
-	project_tests_suite_dict_keys = _get_project_tests_suite_dir_paths(project_name).keys();
-	return True if project_target in project_tests_suite_dict_keys else False;
+	project_tests_suite_list = _get_project_tests_suite_list(project_name);
+	# project_tests_suite_list = _get_project_tests_targets_list(project_name, "suite");
+	return True if project_target in project_tests_suite_list else False;
 ## FULL EXERCISES
 # Funcion que verifica si tel target recibido es un ejercicio(ft_strlen) del proyecto recibido(libft).
-def _is_argument_parser_target_exercise(project_name: str, project_target: str) -> bool:
+def _is_argument_parser_target_an_exercise(project_name: str, project_target: str) -> bool:
 	project_tests_exercises_list = _get_project_tests_exercises_list(project_name);
+	# project_tests_suite_list = _get_project_tests_targets_list(project_name, "exercises");
 	return True if project_target in project_tests_exercises_list else False;
 ### PROJECT-TESTS
 #

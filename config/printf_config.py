@@ -1,3 +1,34 @@
+### PRINTF SUITE PATHS
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf
+_TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH: Path = _TORTURETTE_PROJECT_TESTS_DIR_PATH / "Printf";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/c_flag
+_TORTURETTE_PROJECT_PRINTF_CFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "c_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/s_flag
+_TORTURETTE_PROJECT_PRINTF_SFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "s_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/p_flag
+_TORTURETTE_PROJECT_PRINTF_PFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "p_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/i_flag
+_TORTURETTE_PROJECT_PRINTF_IFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "i_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/d_flag
+_TORTURETTE_PROJECT_PRINTF_DFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "d_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/u_flag
+_TORTURETTE_PROJECT_PRINTF_UFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "u_flag";
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Printf/x_flag
+_TORTURETTE_PROJECT_PRINTF_XFLAG_TESTS_SUITE_DIR_PATH: Path = _TORTURETTE_PROJECT_PRINTF_TESTS_DIR_PATH / "x_flag";
+_PRINTF_ALL_TESTS_SUITE_DIR_PATHS_DICT = {
+	"c_flag": _TORTURETTE_PROJECT_PRINTF_CFLAG_TESTS_SUITE_DIR_PATH,
+	"s_flag": _TORTURETTE_PROJECT_PRINTF_SFLAG_TESTS_SUITE_DIR_PATH,
+	"p_flag": _TORTURETTE_PROJECT_PRINTF_PFLAG_TESTS_SUITE_DIR_PATH,
+	"i_flag": _TORTURETTE_PROJECT_PRINTF_IFLAG_TESTS_SUITE_DIR_PATH,
+	"u_flag": _TORTURETTE_PROJECT_PRINTF_UFLAG_TESTS_SUITE_DIR_PATH,
+	"x_flag": _TORTURETTE_PROJECT_PRINTF_XFLAG_TESTS_SUITE_DIR_PATH
+};
+### GNL SUITE PATHS
+# Variable que contiene la ruta de la carpeta que contiene los tests de la suite/apartado -> /Gnl
+_TORTURETTE_PROJECT_GNL_TESTS_DIR_PATH: Path = _TORTURETTE_PROJECT_TESTS_DIR_PATH / "Gnl";
+_GNL_ALL_TESTS_SUITE_DIR_PATHS_DICT = {};
+### PUSH-SWAP SUITE PATHS
+
 ### PRINTF TEST INFO -> argument_parser_args.args
 ## Comando -> torturette printf
 # Funcion que lee la informacion de todos los ficheros json. Las claves json que se leeran seran los valores recibidos en los argumentos.

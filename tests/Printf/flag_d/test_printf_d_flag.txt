@@ -3,27 +3,34 @@
 
 
 
-void test_d_flag() {
-    // Se comprueba que se muestra un int-decimal normal
+void ft_printf_d_flag_tests(void) {// TEST D-FLAG SUPERADOS
+	int printf_res = 0;
+	int ft_printf_res = 0;
+	// Se comprueba que se muestra un int-decimal normal
     ft_printf_res = ft_printf("Hello %d\n", 42);
     printf_res = printf("Hello %d\n", 42);
     ft_check_printf_res("Test16(int-decimal)", printf_res, ft_printf_res);
-
     // Se comprueba que se muestra un int-decimal negativo
     ft_printf_res = ft_printf("Hello %d\n", -42);
     printf_res = printf("Hello %d\n", -42);
     ft_check_printf_res("Test17(int-decimal-negative)", printf_res, ft_printf_res);
-
     // Se comprueba que se muestra un int ausente(0)
     ft_printf_res = ft_printf("Hello %d\n", 0);
     printf_res = printf("Hello %d\n", 0);// esto es -> NULL directamente sin casteo
     ft_check_printf_res("Test18(null-int)", printf_res, ft_printf_res);
-
-    // Se comprueba que se muestran varios int consecutivos.
-
-    // Se comprueba que se muestran varios int separados.
-
+	// Se comprueba que se muestran varios int consecutivos.
+	ft_printf_res = ft_printf("Hello %d %d %d\n", 1, 2, 3);
+	printf_res = printf("Hello %d %d %d\n", 1, 2, 3);
+	ft_check_printf_res("Test19(int-consecutivos)", printf_res, ft_printf_res);
     // Se comprueba que se muestran varios int negativos consecutivos.
-
-    // Se comprueba que se muestran varios int negativos separados.
+	ft_printf_res = ft_printf("Hello %d %d %d\n", -1, -2, -3);
+	printf_res = printf("Hello %d %d %d\n", -1, -2, -3);
+	ft_check_printf_res("Test20(int-negativos-consecutivos)", printf_res, ft_printf_res);
+	// Se compruebas numeros maximos y minimos
+	ft_printf_res = ft_printf("INT_MAX -> %i\n", INT_MAX-1);
+	printf_res = printf("INT_MAX -> %i\n", INT_MAX-1);
+	ft_check_printf_res("Test21(INT_MAX)", printf_res, ft_printf_res);
+	ft_printf_res = ft_printf("INT_MIN -> %i\n", INT_MIN);
+	printf_res = printf("INT_MIN -> %i\n", INT_MIN);
+	ft_check_printf_res("Test22(INT_MIN)", printf_res, ft_printf_res);
 }
