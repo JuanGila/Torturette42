@@ -2,7 +2,6 @@
 ### TORTURETTE
 from pathlib import Path
 from typing import Callable
-
 #### 4.- CONSTANTS
 ### 3.1.- ARGUMENT PARSER
 _ARGUMENT_PARSER_DEFAULT_ACTIONS_DICT = {
@@ -50,12 +49,6 @@ _COMMON_CORE_MLST_PROJECTS_DICT = {
     },
 	6: {"transcendence": _show_transcendence_tests_info},
 }
-# Constante que contiene el total de proyectos de todos los milestones, osea todos los proyectos del common core.
-_COMMON_CORE_MLST_PROJECTS_DICT_TUPLE = tuple(
-    project
-    for milestone in _COMMON_CORE_MLST_PROJECTS_DICT.values()
-    for project in milestone
-);
 # Funcion que devuelve la funcion/callback correspondiente a un proyecto en un milestone.
 def _get_common_core_mlst_project_callback(project_name: str) -> Callable | None:
     # Ejemplo: Si project_name es libft y milestone es 0, se devuelve _show_libft_tests_info
@@ -63,25 +56,64 @@ def _get_common_core_mlst_project_callback(project_name: str) -> Callable | None
         if project_name in milestone: return milestone[project_name];
 	# No se ha encontrado el proyecto indicado. Esto nunca se ejecuta ya que el argumento del proyecto es obligatorio(required=True).
     return None;
+# Constante que contiene el total de proyectos de todos los milestones, osea todos los proyectos del common core.
+_COMMON_CORE_MLST_PROJECTS_DICT_TUPLE = tuple(
+    project
+    for milestone in _COMMON_CORE_MLST_PROJECTS_DICT.values()
+    for project in milestone
+);
+## GENERIC
+# Funcion que recibe el nombre de un proyecto y el tipo de target a extraer para devolver la lista de suites o la lista de ejericios del proyecto.
+def _get_project_tests_targets_list(
+	project_name: str = "none_project_name_given",
+	project_target_type: str = "none_project_target_type_given"
+) -> list[str]:
+	# project_name.capitalize() ya que el comando es torturette libft info y la carpeta se llama Torturette/Libft/*
+	project_path = _TORTURETTE_PROJECT_TESTS_DIR_PATH / project_name.capitalize();
+	# Si la ruta no existe es porque alguien ha modificado la estructura del proyecto.
+	if not project_path.is_dir():
+		print(f"Error al obtener la lista de suites/ejericios del proyecto -> {project_name}. Se ha modificado la estructura del proyecto, reinstalar.");
+	# Si el tipo de target es suite, devolvemos la lista de suites, si es exercises, devolvemos la lista de ejercicios y sino error.
+	if project_target_type == "suite": return [test_suite_path.name for test_suite_path in project_path.iterdir() if test_suite_path.is_dir()];
+	elif project_target_type == "exercises": return [
+		exercise_path.name
+		for test_suite_path in project_path.iterdir()
+		for exercise_path in test_suite_path.iterdir()
+		if exercise_path.is_dir()
+	];
+	else: raise ValueError(f"Tipo de target no válido -> {project_target_type}. Debe ser 'suite' o 'exercises'.");
+## FULL SUITE/EXERCISES FUNCTIONS
+# Funcion que muestra la informacion de las suites recibidas en project_targets para el proyecto recibido en project_name.
+def _show_torturette_project_info_by_suites(
+	project_name: str = "none_project_name",
+	project_targets: list[str] = None
+) -> bool:
+	# project_name.capitalize() ya que el comando es torturette libft info y la carpeta se llama Torturette/Libft/*
+	project_path = _TORTURETTE_PROJECT_TESTS_DIR_PATH / project_name.capitalize();
+	for project_suite_target in project_targets:
+		project_suite_path = project_path / project_suite_target;
+		if not project_suite_path.is_dir():
+			print(f"Error en la suite -> {project_suite_target} para la ruta -> {project_path}. Se ha modificado la estructura del proyecto, reinstalar.");
+			return False;
+		# Mostramos la informacion del .json que hay dentro de la carpeta de cada suite(libft_[project_suite_target]_suite_tests.json).
+	# Fin de la funcion.
+	return True;
+#
+def _show_torturette_project_info_by_exercises(project_name: str = "none_project_name", project_targets: list[str] = None) -> bool:pass
 ## HASTA AQUI TODOO OK, NO TOCAR.
 
 
+### TEST-SUITE DISPATCHER
 _COMMON_CORE_TEST_SUITES_LIST = [
 	_LIBFT_ALL_TESTS_SUITE_DICT.keys(),
 	_PRINTF_TESTS_SUITE_DICT.keys(),
 	_GNL_TESTS_SUITE_DICT.keys()
 ];
 def _get_common_core_test_suites_list() -> list[list[str]]: return _COMMON_CORE_TEST_SUITES_LIST;
-
-###
 def _common_core_test_suite_dispatcher(args: list[str] | None = None):
 	if args[0] in _get_libft_test_suite_dict_keys(): return _LIBFT_ALL_TESTS_SUITE_DICT[args[0]](args);
 	elif args[0] in _get_printf_test_suite_dict_keys(): return _PRINTF_TESTS_SUITE_DICT[args[0]](args);
 	elif args[0] in _get_gnl_test_suite_dict_keys(): return _GNL_TESTS_SUITE_DICT[args[0]](args);
-
-
-
-
 
 
 #### RUNNERS-TESTERS
@@ -92,7 +124,3 @@ _COMMON_CORE_PROJECTS_DICT_ORACULO = {
     "push_swap": PushSwapRunner,
 };
 def _get_torturette_projects_dict_keys_list() -> list[str]: return list(_TORTURETTE_PROJECTS_DICT.keys());
-
-
-
-_ALL_PROJECTS_TESTS_SUITE_LIST = [_LIBFT_ALL_TESTS_SUITE_DICT.keys()];

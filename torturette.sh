@@ -1,10 +1,10 @@
 #!/bin/bash
 clear
 # NUMEROS VERDES CAYENDO
-for i in {1..25}
+for i in {1..10}
 do
     printf "\033[32m"
-    for j in {1..100}
+    for j in {1..210}
     do
         printf "%c" $((RANDOM % 94 + 33))
     done
@@ -12,7 +12,14 @@ do
     sleep 0.01
 done
 # # FIN NUMEROS VERDES CAYENDO
+clear
 # BUCLE DE FRAMES
+# Comprobar que existen archivos .ansi
+if ! compgen -G "assets/ansi/*.ansi" > /dev/null; then
+    echo "Se ha modificado la estructura del tester. Reinstalar torturette."
+    exit 1
+fi
+# Iteramos por los archivos .ansi
 for f in assets/ansi/*.ansi
 do
     printf '\033[H%s' "$(<"$f")"

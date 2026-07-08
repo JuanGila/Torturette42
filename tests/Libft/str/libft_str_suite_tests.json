@@ -1,0 +1,471 @@
+{
+    "ft_atoi": {
+        "description": "Tests para ft_atoi",
+        "tests": {
+            "1": {
+            "id": 1,
+                "name": "Número positivo simple",
+                "objective": "Comprobar la conversión básica de un entero positivo.",
+                "input": "42",
+                "expected_output": 42,
+                "output": null
+            },
+            "2": {
+                "name": "Espacios iniciales",
+                "objective": "Comprobar que ignora los espacios en blanco iniciales.",
+                "input": "   42",
+                "expected_output": 42,
+                "output": null
+            },
+            "3": {
+                "name": "Signo negativo",
+                "objective": "Comprobar el manejo del signo '-'.",
+                "input": "-42",
+                "expected_output": -42,
+                "output": null
+            }
+        }
+    },
+    "ft_itoa": {
+        "description": "Tests para ft_itoa",
+        "tests": {
+            "1": {
+                "name": "Número positivo simple",
+                "objective": "Comprobar la conversión básica de un entero positivo a cadena.",
+                "input": 42,
+                "expected_output": "42",
+                "output": null
+            },
+            "2": {
+                "name": "Número negativo simple",
+                "objective": "Comprobar la conversión de un entero negativo a cadena.",
+                "input": -42,
+                "expected_output": "-42",
+                "output": null
+            },
+            "3": {
+                "name": "Cero",
+                "objective": "Comprobar la conversión del número cero a cadena.",
+                "input": 0,
+                "expected_output": "0",
+                "output": null
+            }
+        }
+    },
+    "ft_split": {
+        "description": "Tests para ft_split",
+        "tests": {
+            "1": {
+                "name": "Cadena simple con un delimitador",
+                "objective": "Comprobar la división de una cadena simple.",
+                "input": ["Hello World", ' '],
+                "expected_output": ["Hello", "World"],
+                "output": null
+            },
+            "2": {
+                "name": "Cadena con múltiples delimitadores",
+                "objective": "Comprobar la división de una cadena con múltiples delimitadores.",
+                "input": ["Hello,World,Test", ','],
+                "expected_output": ["Hello", "World", "Test"],
+                "output": null
+            },
+            "3": {
+                "name": "Cadena con delimitadores consecutivos",
+                "objective": "Comprobar la división de una cadena con delimitadores consecutivos.",
+                "input": ["Hello,,World", ','],
+                "expected_output": ["Hello", "", "World"],
+                "output": null
+            }
+        }
+    },
+    "ft_strchr": {
+        "description": "Tests para ft_strchr",
+        "tests": {
+            "1": {
+                "name": "Encontrar un carácter existente",
+                "objective": "Comprobar la búsqueda de un carácter que existe en la cadena.",
+                "input": ["Hello World", 'W'],
+                "expected_output": "World",
+                "output": null
+            },
+            "2": {
+                "name": "Buscar un carácter que no existe",
+                "objective": "Comprobar la búsqueda de un carácter que no está en la cadena.",
+                "input": ["Hello World", 'x'],
+                "expected_output": null,
+                "output": null
+            },
+            "3": {
+                "name": "Buscar el carácter nulo",
+                "objective": "Comprobar la búsqueda del carácter nulo al final de la cadena.",
+                "input": ["Hello World", '\0'],
+                "expected_output": "",
+                "output": null
+            }
+        }
+    },
+    "ft_strdup": {
+        "description": "Tests para ft_strdup",
+        "tests": {
+            "1": {
+                "name": "Duplicar una cadena simple",
+                "objective": "Comprobar la duplicación de una cadena simple.",
+                "input": "Hello World",
+                "expected_output": "Hello World",
+                "output": null
+            },
+            "2": {
+                "name": "Duplicar una cadena vacía",
+                "objective": "Comprobar la duplicación de una cadena vacía.",
+                "input": "",
+                "expected_output": "",
+                "output": null
+            },
+            "3": {
+                "name": "Duplicar una cadena con caracteres especiales",
+                "objective": "Comprobar la duplicación de una cadena con caracteres especiales.",
+                "input": "!@#$%^&*()",
+                "expected_output": "!@#$%^&*()",
+                "output": null
+            }
+        }
+    },
+    "ft_striteri": {
+        "description": "Tests para ft_striteri",
+        "tests": {
+            "1": {
+                "name": "Aplicar función a cada carácter",
+                "objective": "Comprobar la aplicación de una función a cada carácter de la cadena.",
+                "input": ["Hello", "function"],
+                "expected_output": "Hfnllo",
+                "output": null
+            },
+            "2": {
+                "name": "Cadena vacía",
+                "objective": "Comprobar el comportamiento con una cadena vacía.",
+                "input": ["", "function"],
+                "expected_output": "",
+                "output": null
+            },
+            "3": {
+                "name": "Cadena con caracteres especiales",
+                "objective": "Comprobar la aplicación de una función a una cadena con caracteres especiales.",
+                "input": ["!@#$", "function"],
+                "expected_output": "!@#$",
+                "output": null
+            }
+        }
+    },
+    "ft_strjoin": {
+        "description": "Tests para ft_strjoin",
+        "tests": {
+            "1": {
+                "name": "Unir dos cadenas simples",
+                "objective": "Comprobar la unión de dos cadenas simples.",
+                "input": ["Hello", "World"],
+                "expected_output": "HelloWorld",
+                "output": null
+            },
+            "2": {
+                "name": "Unir una cadena vacía con otra",
+                "objective": "Comprobar la unión de una cadena vacía con otra.",
+                "input": ["", "World"],
+                "expected_output": "World",
+                "output": null
+            },
+            "3": {
+                "name": "Unir dos cadenas vacías",
+                "objective": "Comprobar la unión de dos cadenas vacías.",
+                "input": ["", ""],
+                "expected_output": "",
+                "output": null
+            }
+        }
+    },
+    "ft_strlcat": {
+        "description": "Tests para ft_strlcat",
+        "tests": {
+            "1": {
+                "name": "Concatenar dos cadenas con suficiente espacio",
+                "objective": "Comprobar la concatenación de dos cadenas cuando hay suficiente espacio en el destino.",
+                "input": ["Hello", "World", 11],
+                "expected_output": 10,
+                "output": null
+            },
+            "2": {
+                "name": "Concatenar dos cadenas con espacio insuficiente",
+                "objective": "Comprobar la concatenación de dos cadenas cuando no hay suficiente espacio en el destino.",
+                "input": ["Hello", "World", 5],
+                "expected_output": 10,
+                "output": null
+            },
+            "3": {
+                "name": "Concatenar con cadena vacía",
+                "objective": "Comprobar la concatenación de una cadena vacía con otra.",
+                "input": ["", "World", 6],
+                "expected_output": 5,
+                "output": null
+            }
+        }
+    },
+    "ft_strlcpy": {
+        "description": "Tests para ft_strlcpy",
+        "tests": {
+            "1": {
+                "name": "Copiar una cadena con suficiente espacio",
+                "objective": "Comprobar la copia de una cadena cuando hay suficiente espacio en el destino.",
+                "input": ["Hello", 6],
+                "expected_output": 5,
+                "output": null
+            },
+            "2": {
+                "name": "Copiar una cadena con espacio insuficiente",
+                "objective": "Comprobar la copia de una cadena cuando no hay suficiente espacio en el destino.",
+                "input": ["Hello", 3],
+                "expected_output": 5,
+                "output": null
+            },
+            "3": {
+                "name": "Copiar una cadena vacía",
+                "objective": "Comprobar la copia de una cadena vacía.",
+                "input": ["", 1],
+                "expected_output": 0,
+                "output": null
+            }
+        }
+    },
+    "ft_strlen": {
+        "description": "Tests para ft_strlen",
+        "tests": {
+            "1": {
+                "name": "Cadena simple",
+                "objective": "Comprobar la longitud de una cadena simple.",
+                "input": "Hello",
+                "expected_output": 5,
+                "output": null
+            },
+            "2": {
+                "name": "Cadena vacía",
+                "objective": "Comprobar la longitud de una cadena vacía.",
+                "input": "",
+                "expected_output": 0,
+                "output": null
+            },
+            "3": {
+                "name": "Cadena con espacios",
+                "objective": "Comprobar la longitud de una cadena que contiene espacios.",
+                "input": "Hello World",
+                "expected_output": 11,
+                "output": null
+            }
+        }
+    },
+    "ft_strmapi": {
+        "description": "Tests para ft_strmapi",
+        "tests": {
+            "1": {
+                "name": "Aplicar función a cada carácter",
+                "objective": "Comprobar la aplicación de una función a cada carácter de la cadena.",
+                "input": ["Hello", "function"],
+                "expected_output": "Hfnllo",
+                "output": null
+            },
+            "2": {
+                "name": "Cadena vacía",
+                "objective": "Comprobar el comportamiento con una cadena vacía.",
+                "input": ["", "function"],
+                "expected_output": "",
+                "output": null
+            },
+            "3": {
+                "name": "Cadena con caracteres especiales",
+                "objective": "Comprobar la aplicación de una función a una cadena con caracteres especiales.",
+                "input": ["!@#$", "function"],
+                "expected_output": "!@#$",
+                "output": null
+            }
+        }
+    },
+    "ft_strncmp": {
+        "description": "Tests para ft_strncmp",
+        "tests": {
+            "1": {
+                "name": "Comparar dos cadenas iguales",
+                "objective": "Comprobar la comparación de dos cadenas iguales.",
+                "input": ["Hello", "Hello", 5],
+                "expected_output": 0,
+                "output": null
+            },
+            "2": {
+                "name": "Comparar dos cadenas diferentes",
+                "objective": "Comprobar la comparación de dos cadenas diferentes.",
+                "input": ["Hello", "World", 5],
+                "expected_output": -15,
+                "output": null
+            },
+            "3": {
+                "name": "Comparar con n mayor que la longitud de las cadenas",
+                "objective": "Comprobar la comparación cuando n es mayor que la longitud de las cadenas.",
+                "input": ["Hello", "Hello", 10],
+                "expected_output": 0,
+                "output": null
+            }
+        }
+    },
+    "ft_strnstr": {
+        "description": "Tests para ft_strnstr",
+        "tests": {
+            "1": {
+                "name": "Encontrar una subcadena existente",
+                "objective": "Comprobar la búsqueda de una subcadena que existe en la cadena.",
+                "input": ["Hello World", "World", 11],
+                "expected_output": "World",
+                "output": null
+            },
+            "2": {
+                "name": "Buscar una subcadena que no existe",
+                "objective": "Comprobar la búsqueda de una subcadena que no está en la cadena.",
+                "input": ["Hello World", "Test", 11],
+                "expected_output": null,
+                "output": null
+            },
+            "3": {
+                "name": "Buscar una subcadena con n menor que la longitud de la cadena",
+                "objective": "Comprobar la búsqueda de una subcadena cuando n es menor que la longitud de la cadena.",
+                "input": ["Hello World", "World", 5],
+                "expected_output": null,
+                "output": null
+            }
+        }
+    },
+    "ft_strrchr": {
+        "description": "Tests para ft_strrchr",
+        "tests": {
+            "1": {
+                "name": "Encontrar el último carácter existente",
+                "objective": "Comprobar la búsqueda del último carácter que existe en la cadena.",
+                "input": ["Hello World", 'o'],
+                "expected_output": "orld",
+                "output": null
+            },
+            "2": {
+                "name": "Buscar un carácter que no existe",
+                "objective": "Comprobar la búsqueda de un carácter que no está en la cadena.",
+                "input": ["Hello World", 'x'],
+                "expected_output": null,
+                "output": null
+            },
+            "3": {
+                "name": "Buscar el carácter nulo",
+                "objective": "Comprobar la búsqueda del carácter nulo al final de la cadena.",
+                "input": ["Hello World", '\0'],
+                "expected_output": "",
+                "output": null
+            }
+        }
+    },
+    "ft_strtrim": {
+        "description": "Tests para ft_strtrim",
+        "tests": {
+            "1": {
+                "name": "Recortar espacios en blanco",
+                "objective": "Comprobar el recorte de espacios en blanco al inicio y al final de la cadena.",
+                "input": ["   Hello World   ", " "],
+                "expected_output": "Hello World",
+                "output": null
+            },
+            "2": {
+                "name": "Recortar caracteres específicos",
+                "objective": "Comprobar el recorte de caracteres específicos al inicio y al final de la cadena.",
+                "input": ["xxHello Worldxx", "x"],
+                "expected_output": "Hello World",
+                "output": null
+            },
+            "3": {
+                "name": "Cadena sin caracteres a recortar",
+                "objective": "Comprobar el comportamiento cuando no hay caracteres a recortar.",
+                "input": ["Hello World", ""],
+                "expected_output": "Hello World",
+                "output": null
+            }
+        }
+    },
+    "ft_substr": {
+        "description": "Tests para ft_substr",
+        "tests": {
+            "1": {
+                "name": "Subcadena simple",
+                "objective": "Comprobar la extracción de una subcadena simple.",
+                "input": ["Hello World", 0, 5],
+                "expected_output": "Hello",
+                "output": null
+            },
+            "2": {
+                "name": "Subcadena desde un índice mayor",
+                "objective": "Comprobar la extracción de una subcadena desde un índice mayor.",
+                "input": ["Hello World", 6, 5],
+                "expected_output": "World",
+                "output": null
+            },
+            "3": {
+                "name": "Subcadena con longitud mayor que la cadena",
+                "objective": "Comprobar la extracción de una subcadena cuando la longitud es mayor que la cadena.",
+                "input": ["Hello", 0, 10],
+                "expected_output": "Hello",
+                "output": null
+            }
+        }
+    },
+    "ft_tolower": {
+        "description": "Tests para ft_tolower",
+        "tests": {
+            "1": {
+                "name": "Convertir letra mayúscula a minúscula",
+                "objective": "Comprobar la conversión de una letra mayúscula a minúscula.",
+                "input": 'A',
+                "expected_output": 'a',
+                "output": null
+            },
+            "2": {
+                "name": "No cambiar letra minúscula",
+                "objective": "Comprobar que una letra minúscula no cambia.",
+                "input": 'a',
+                "expected_output": 'a',
+                "output": null
+            },
+            "3": {
+                "name": "No cambiar carácter no alfabético",
+                "objective": "Comprobar que un carácter no alfabético no cambia.",
+                "input": '1',
+                "expected_output": '1',
+                "output": null
+            }
+        }
+    },
+    "ft_toupper": {
+        "description": "Tests para ft_toupper",
+        "tests": {
+            "1": {
+                "name": "Convertir letra minúscula a mayúscula",
+                "objective": "Comprobar la conversión de una letra minúscula a mayúscula.",
+                "input": 'a',
+                "expected_output": 'A',
+                "output": null
+            },
+            "2": {
+                "name": "No cambiar letra mayúscula",
+                "objective": "Comprobar que una letra mayúscula no cambia.",
+                "input": 'A',
+                "expected_output": 'A',
+                "output": null
+            },
+            "3": {
+                "name": "No cambiar carácter no alfabético",
+                "objective": "Comprobar que un carácter no alfabético no cambia.",
+                "input": '1',
+                "expected_output": '1',
+                "output": null
+            }
+        }
+    }
+}
