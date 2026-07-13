@@ -3,7 +3,9 @@
 import os
 from pathlib import Path
 ### TORTURETTE TESTER
-#### Funciones
+## CONFIG
+# Import ¿?
+#### TORTURETTE-TESTER FUNCTIONS
 ### AERGUMENT-PARSER
 ## Comando -> torturette libft info o torturette libft test
 # Funcion principal que verifica el argument_parser.
