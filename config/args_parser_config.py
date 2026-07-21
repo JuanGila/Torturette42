@@ -65,7 +65,7 @@ def create_argument_parser():
     ## Comando -> torturette libft o torturette printf
     torturette_argument_parser.add_argument(
         "project",
-        choices=_COMMON_CORE_MLST_PROJECTS_DICT_TUPLE,
+        choices=_get_common_core_mlst_projects_tuple(),
         metavar="PROJECT",
         help="Proyecto a utilizar."
     );

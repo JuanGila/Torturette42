@@ -24,7 +24,7 @@ _TORTURETTE_PROJECT_TESTS_DIR_PATH: Path = _TORTURETTE_PROJECT_ROOT_DIR_PATH / "
 
 
 ##
-# Funcion que recibe la ruta de la suite por la que iterar para extraer de sus carpetas los nombres de los ejercicios ya que se llaman igual.
+# Funcion que recibe la ruta de la suite(de cualquier proyecto) por la que iterar para extraer de sus carpetas los nombres de los ejercicios ya que se llaman igual.
 @cache
 def _get_all_tests_suite_exercises_list_by_path(test_suite_path: Path) -> list[str]: return sorted(
 	exercise_dir_path.name

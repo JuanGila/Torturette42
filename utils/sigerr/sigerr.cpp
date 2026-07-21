@@ -6,10 +6,27 @@
 #include "color.hpp"
 //
 extern int iTest;
-// SIGERR (global error)
+/* SIGERR (global error)
+{ SIGSEGV, ".SIGSEGV (Segmentation Fault)" },
+{ SIGABRT, ".SIGABRT (Abort)" },
+{ SIGFPE,  ".SIGFPE (Floating Point Exception)" },
+{ SIGILL,  ".SIGILL (Illegal Instruction)" },
+{ SIGBUS,  ".SIGBUS (Bus Error)" },
+{ SIGPIPE, ".SIGPIPE (Broken Pipe)" },
+{ SIGTERM, ".SIGTERM (Terminated)" },
+{ SIGINT,  ".SIGINT (Interrupted)" },
+{ UB,  ".UB (Undefined Behaviour)" },
+{ SIGINT,  ".¿? (Buffer Overflow)" },
+{ SIGINT,  ".¿? (Double Free)" },
+{ SIGINT,  ".¿? (Deadlock)" },
+{ SIGINT,  ".¿? (Heap Corruption)" },
+{ SIGINT,  ".¿? (Stack Overflow)" },
+{ SIGINT,  ".¿? (Use After Free)" },
+*/
 void sigerr(int signal, std::string& msg)
 {
     // Usar este global para todos. Crear una funcion que recoja los errores y cuando detecte cual es cual cree el mensaje correspondiente.
+    // Ejemplo -> cout << FG_LYELLOW << iTest++ << ".SIGSEGV" << ENDL;
     cout << FG_LYELLOW << iTest++ << msg << ENDL;
     exit(signal);
 }
