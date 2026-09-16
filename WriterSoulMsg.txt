@@ -3,7 +3,9 @@ EVALUADO:
 
 
 EVALUADOR:
-    Ha sido una buena experiencia poder evaluar este proyecto y conocer de primera mano el trabajo realizado. La corrección me ha permitido revisar diferentes enfoques, intercambiar ideas y aprender también de la experiencia de la otra persona. Espero que el feedback proporcionado le sea útil para seguir mejorando.
+    - Global: Ha sido una buena experiencia poder evaluar este proyecto y conocer de primera mano el trabajo realizado. La corrección me ha permitido revisar diferentes enfoques, intercambiar ideas y aprender también de la experiencia de la otra persona. Espero que el feedback proporcionado le sea útil para seguir mejorando.
+    - Ctrl + C: El estudiante no ha tenido del todo en cuenta el control de las excepciones en el proyecto, por lo tanto está suspenso por no gestionar las excepciones de manera adecuada para evitar fallos tal y como se indica en las instrucciones generales desde el módulo 3 en adelante.
+
 
 
 The Hacker Achievement:
