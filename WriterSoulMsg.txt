@@ -1,0 +1,11 @@
+EVALUADO:
+    Quiero agradecer el tiempo y la dedicación durante la corrección de mi proyecto. Valoro mucho las explicaciones, los comentarios y el feedback recibido, ya que me ayudan a entender mejor mis errores y a seguir mejorando tanto en este proyecto como en mi aprendizaje dentro de 42.
+
+
+EVALUADOR:
+    Ha sido una buena experiencia poder evaluar este proyecto y conocer de primera mano el trabajo realizado. La corrección me ha permitido revisar diferentes enfoques, intercambiar ideas y aprender también de la experiencia de la otra persona. Espero que el feedback proporcionado le sea útil para seguir mejorando.
+
+
+The Hacker Achievement:
+    - Intra(examenes): Yo puedo obtener la oja de evaluacion de un proyecto sin necesidad de haber empezado la evaluacion en el ordenador del estudiante a evaluar
+    - Infra(carpetas estudiantes): Se puede introducir un script malicioso para que ¿albrodri?
